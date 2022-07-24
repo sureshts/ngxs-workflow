@@ -1,0 +1,38 @@
+<ng-container>
+  <br />
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="value1" class="form-label">Value1</label>
+      <input
+        type="text"
+        class="form-control"
+        id="value1"
+        aria-describedby="emailHelp"
+        placeholder="value1..."
+        formControlName="page1__value1"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="value2" class="form-label">Value2</label>
+      <input
+        type="text"
+        class="form-control"
+        id="value2"
+        aria-describedby="emailHelp"
+        placeholder="value2..."
+        formControlName="page1__value2"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="value1" class="form-label">Value3</label>
+      <input
+        type="text"
+        class="form-control"
+        id="value3"
+        aria-describedby="emailHelp"
+        placeholder="value3..."
+        formControlName="page1__value3"
+      />
+    </div>
+  </form>
+</ng-container>

@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col">
+    <ng-container *ngIf="activeStep$ | async as activeStep">
+      <h3>{{ activeStep.url | uppercase }}</h3>
+
+      <br />
+      <router-outlet></router-outlet>
+      <div class="main-shell__form-value">
+        <strong>Form Value :</strong>
+        <pre> {{ form$ | async | json }}</pre>
+      </div>
+    </ng-container>
+  </div>
+  <div class="col main-shell__workflow">
+    <strong>State Values :</strong>
+    <pre>{{ steps$ | async | json }}</pre>
+  </div>
+</div>
+<div class="row">
+  <div class="col main-shell__action">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button
+        [disabled]="isFirstStep$ | async"
+        type="button"
+        (click)="onPreviousNextStep()"
+        class="btn btn-success"
+      >
+        Previous Step
+      </button>
+      <button
+        type="button"
+        [disabled]="!(form$ | async).isValid"
+        (click)="onNextStep()"
+        class="btn btn-warning"
+      >
+        {{ (isLastStep$ | async) ? "Finish" : "Next Step" }}
+      </button>
+    </div>
+    <ng-container *ngIf="stepDetail$ | async as stepDetail">
+      {{ stepDetail.current + 1 }} of {{ stepDetail.total }}
+    </ng-container>
+  </div>
+</div>

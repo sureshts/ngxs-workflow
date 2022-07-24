@@ -1,0 +1,44 @@
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+  <button
+    (click)="onGetProducts('volt')"
+    type="button"
+    class="btn btn-outline-primary"
+  >
+    Volt
+  </button>
+  <button
+    (click)="onGetProducts('dual')"
+    type="button"
+    class="btn btn-outline-info"
+  >
+    Dual
+  </button>
+  <button
+    type="button"
+    (click)="onGetProducts('Broadband')"
+    class="btn btn-outline-danger"
+  >
+    Broadband
+  </button>
+</div>
+
+<br />
+<div *ngFor="let product of products" class="product-catalog">
+  <div class="card product-catalog__card">
+    <div class="card-body">
+      <h4 class="card-title">{{ product.name }}</h4>
+      <h5 class="text-secondary">{{ product.category }}</h5>
+      <p class="card-text text-secondary">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+      </p>
+      <hr />
+      <button
+        (click)="onSelect(product)"
+        class="btn btn-sm btn-outline-success"
+      >
+        Select
+      </button>
+      <button class="btn btn-sm btn-outline-danger">Customise</button>
+    </div>
+  </div>
+</div>
