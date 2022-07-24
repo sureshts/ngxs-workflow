@@ -27,5 +27,6 @@ export class NgXSStorageEngine implements StorageEngine {
 
   clear(): void {
     // Your logic here
+    localStorage.clear();
   }
 }
