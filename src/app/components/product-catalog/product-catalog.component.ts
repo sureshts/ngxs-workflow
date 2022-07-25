@@ -13,6 +13,7 @@ export class ProductCatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.onGetProducts('volt');
+    localStorage.clear();
   }
 
   onSelect(product: any) {

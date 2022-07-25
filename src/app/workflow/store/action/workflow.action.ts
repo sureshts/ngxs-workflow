@@ -2,6 +2,7 @@ export const WORKFLOW_START = '[Workflow] Start workflow';
 export const WORKFLOW_LOAD = '[Workflow] Get workflow';
 export const NEXT_WORKFLOW_STEP = '[Workflow] Next workflow step';
 export const PREVIOUS_WORKFLOW_STEP = '[Workflow] Previous workflow step';
+export const RESET_WORKFLOW = '[Workflow] reset workflow';
 export class GetWorkflow {
   static readonly type = '[Workflow] Get workflow';
 }
@@ -22,4 +23,8 @@ export class NextWorkflowStep {
 
 export class PreviousWorkflowStep {
   static readonly type = PREVIOUS_WORKFLOW_STEP;
+}
+
+export class ResetWorkflow {
+  static readonly type = RESET_WORKFLOW;
 }

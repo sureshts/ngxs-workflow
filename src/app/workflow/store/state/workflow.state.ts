@@ -5,6 +5,7 @@ import {
   GetWorkflow,
   NextWorkflowStep,
   PreviousWorkflowStep,
+  ResetWorkflow,
   StartWorkflow,
 } from '../action/workflow.action';
 import { WorkflowService } from '../services/workflow.service';
@@ -62,20 +63,33 @@ export class WorkflowState {
     return state.activeStep;
   }
 
+  @Action(ResetWorkflow)
+  resetWorkflow(ctx: StateContext<WorkflowStateModel>) {
+    ctx.setState({
+      workflowId: 0,
+      workflowName: '',
+      steps: [],
+      activeStep: null,
+      isLastStep: false,
+      isFirstStep: false,
+      activeStepIndex: -1,
+      productId: 0,
+      productCategory: '',
+    });
+  }
   @Action(NextWorkflowStep)
   nextWorkflowStep(
     ctx: StateContext<WorkflowStateModel>,
     action: NextWorkflowStep
   ) {
     const state = ctx.getState();
-
+    const newSteps = state.steps.map((s) => {
+      if (s.id === state.activeStep.id) {
+        return { ...s, ...{ data: action.data } };
+      }
+      return s;
+    });
     if (state.steps[state.activeStepIndex + 1]) {
-      const newSteps = state.steps.map((s) => {
-        if (s.id === state.activeStep.id) {
-          return { ...s, ...{ data: action.data } };
-        }
-        return s;
-      });
       const newActiveStepIndex = state.activeStepIndex + 1;
       ctx.setState({
         ...state,
@@ -84,6 +98,11 @@ export class WorkflowState {
         activeStepIndex: newActiveStepIndex,
         isLastStep: newActiveStepIndex === state.steps.length - 1,
         isFirstStep: newActiveStepIndex === 0,
+      });
+    } else {
+      ctx.setState({
+        ...state,
+        ...{ steps: newSteps },
       });
     }
   }
