@@ -14,14 +14,7 @@ import { ResetWorkflow } from '../workflow/store/action/workflow.action';
 })
 export class ProductCatalogGuard implements CanActivate {
   constructor(private store: Store) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
+  canActivate() {
     this.store.dispatch(new ResetWorkflow());
     return true;
   }
